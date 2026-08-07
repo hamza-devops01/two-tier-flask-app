@@ -131,7 +131,7 @@
 
 <body>
     <div class="container">
-        <h1>Flask + MySQL App [2 tier] - Junoon 🔥</h1>
+        <h1>Flask + MySQL App [2 tier] - DevOps 🔥</h1>
 
         <div class="messages">
             {% for message in messages %}
@@ -166,7 +166,7 @@
                     data: { new_message: message },
                     success: function(response) {
                         if (response && response.message) {
-                            $(".messages").append("<p>" + response.message + "</p>");
+				$(".messages").append("<p>" + response.message + "</p>");
                             messageInput.val("");
                         } else {
                             console.error("Unexpected response format:", response);
