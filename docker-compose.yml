@@ -4,7 +4,7 @@ services:
     container_name: mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: tws_db
+      MYSQL_DATABASE: mysql-data-1
       MYSQL_USER: admin
       MYSQL_PASSWORD: admin
     volumes:
@@ -28,7 +28,7 @@ services:
       MYSQL_HOST: mysql
       MYSQL_USER: root
       MYSQL_PASSWORD: root
-      MYSQL_DB: tws_db
+      MYSQL_DB: mysql-data-1
     depends_on:
       - mysql
     networks:
