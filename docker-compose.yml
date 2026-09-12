@@ -8,7 +8,7 @@ services:
       MYSQL_USER: admin
       MYSQL_PASSWORD: admin
     volumes:
-      - ./mysql-data-1:/var/lib/mysql
+      - mysql-data-1:/var/lib/mysql
     networks:
       - twotierr
     ports:
