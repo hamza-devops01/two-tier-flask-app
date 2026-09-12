@@ -21,8 +21,7 @@ services:
       start_period: 60s
 
   flask-app:
-    build:
-      context: .
+    image: hamzadevops01/two-tier-flask-app:latest
     container_name: flask-app
     environment:
       MYSQL_HOST: mysql
