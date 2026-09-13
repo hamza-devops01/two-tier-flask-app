@@ -36,4 +36,17 @@ pipeline{
             }
         }
     }
+    
+    post{
+        success{
+            mail to: 'hamzasajjad3141@gmail.com',
+            subject: 'Success:Job Completed',
+            body: 'Your Pipeline run Successfully!'
+        }
+        failure{
+            mail to: 'hamzasajjad3141@gmail.com',
+            subject: 'Failure:Build Failed',
+            body: 'Check the Jenkins console output for errors.'
+        }
+    }
 }
