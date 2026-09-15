@@ -7,6 +7,11 @@ pipeline{
                 echo "Code Clone Successfully"
             }
         }
+        stage("File System Scan"){
+            steps{
+                sh "trivy fs . -o result.json"
+            }
+        }
         stage("Build"){
             steps{
                 sh "docker build -t two-tier-flask-app ."
@@ -37,16 +42,30 @@ pipeline{
         }
     }
     
-    post{
-        success{
-            mail to: 'hamzasajjad3141@gmail.com',
-            subject: 'Success:Job Completed',
-            body: 'Your Pipeline run Successfully!'
-        }
-        failure{
-            mail to: 'hamzasajjad3141@gmail.com',
-            subject: 'Failure:Build Failed',
-            body: 'Check the Jenkins console output for errors.'
+post {
+    success {
+        script {
+            emailext (
+                from: 'hamzasajjad3141@gmail.com',
+                to: 'hamzasajjad3141@gmail.com',
+                subject: "✅ SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: "Build Successful!\n\nConsole log attached hai.",
+                attachmentsPattern: '**/result.json',
+                mimeType: 'text/plain'
+            )
         }
     }
+    failure {
+        script {
+            emailext(
+                from: 'hamzasajjad3141@gmail.com',
+                to: 'hamzasajjad3141@gmail.com',
+                subject: "❌ FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: "Build Failed!\n\nConsole log attached hai.",
+                attachmentsPattern: '**/result.json',
+                mimeType: 'text/plain'
+            )
+        }
+    }
+}
 }
