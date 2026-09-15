@@ -9,21 +9,25 @@ pipeline{
                 echo "Code Clone Successfully"
             }
         }
+        
         stage("File System Scan"){
             steps{
                 sh "trivy fs . -o result.json"
             }
         }
+        
         stage("Build"){
             steps{
                 sh "docker build -t two-tier-flask-app ."
             }
         }
+        
         stage("Test"){
             steps{
                 echo "Developer/Tester test the code"
             }
         }
+        
         stage("push to Docker Hub"){
             steps{
                 withCredentials([usernamePassword(
@@ -37,6 +41,7 @@ pipeline{
             }
             }
         }
+        
         stage("Deploy"){
             steps{
                 sh "docker compose up -d --build flask-app"
