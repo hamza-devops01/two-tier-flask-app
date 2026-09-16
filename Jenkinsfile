@@ -51,13 +51,13 @@ pipeline{
 post {
     success {
         script {
-           email-notify()
+           email-notify(env.JOB_NAME, env.BUILD_NUMBER, true)
         }
     
 }
     failure {
         script {
-           email-notify()
+           email-notify(env.JOB_NAME, env.BUILD_NUMBER, false)
         }
     
 }
