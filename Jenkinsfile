@@ -53,6 +53,12 @@ post {
         script {
            email-notify()
         }
-    }
+    
+}
+    failure {
+        script {
+           email-notify()
+        }
+    
 }
 }
