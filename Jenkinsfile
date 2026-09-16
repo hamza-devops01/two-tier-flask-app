@@ -58,7 +58,8 @@ post {
     failure {
         script {
            email_notify(env.JOB_NAME, env.BUILD_NUMBER, false)
-        }   
+        }
+        
 }
 }
 }
