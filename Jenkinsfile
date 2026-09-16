@@ -55,6 +55,7 @@ post {
         }
     
 }
+    
     failure {
         script {
            email-notify(env.JOB_NAME, env.BUILD_NUMBER, false)
