@@ -16,7 +16,7 @@ pipeline{
         stage("File System Scan"){
             steps{
                 script{
-                   trivy-fs()
+                   trivy_fs()
                 }
             }
         }
@@ -36,7 +36,7 @@ pipeline{
         stage("push to Docker Hub"){
             steps{
                 script{
-                    docker-push("dockerhubcrd","two-tier-flask-app")
+                    docker_push("dockerhubcrd","two-tier-flask-app")
                 } 
             }
         }
@@ -51,13 +51,13 @@ pipeline{
 post {
     success {
         script {
-           email-notify(env.JOB_NAME, env.BUILD_NUMBER, true)
+           email_notify(env.JOB_NAME, env.BUILD_NUMBER, true)
         }
     
 }
     failure {
         script {
-           email-notify(env.JOB_NAME, env.BUILD_NUMBER, false)
+           email_notify(env.JOB_NAME, env.BUILD_NUMBER, false)
         }
     
 }
